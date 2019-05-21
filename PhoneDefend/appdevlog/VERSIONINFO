@@ -1,0 +1,57 @@
+20190514
+versionCode 1
+versionName "1.0"
+1.自定义组合控件(事件的传递)
+    com.coderjj.phonedefend.view.SettingItemView
+2.监测版本，与服务器对比，更新操作，网络请求，json数据解析
+    ccom.coderjj.phonedefend.activity.SplashActivity
+——————————————————————————————————————————————————
+
+20190515
+versionCode 1
+versionName "1.0"
+1.MD5密码加密
+    com.coderjj.phonedefend.utils.Md5Util
+2.联系人内容提供者(系统数据库读取数据)
+    com.coderjj.phonedefend.activity.ContactActivity   initData()
+3.手势、Activity平移动画
+    com.coderjj.phonedefend.activity.BaseStepActivity   initGesture()、goToNext()
+4.手机重启广播
+    com.coderjj.phonedefend.receiver.BootReceiver
+——————————————————————————————————————————————————
+
+20190516
+versionCode 1
+versionName "1.0"
+1.最优定位
+    com.coderjj.phonedefend.service
+2.引用数据库
+    com.coderjj.phonedefend.activity.SplashActivity   initAddressDB(String dbName)
+    com.coderjj.phonedefend.engine.AddressDao
+3.窗口抖动、手机振动、实时查询
+    com.coderjj.phonedefend.activity.QueryAdressActivity
+——————————————————————————————————————————————————
+
+20190520
+versionCode 1
+versionName "1.0"
+1.自定义吐司
+    com.coderjj.phonedefend.service   showToast(String incomingNumber)
+2.view的拖拽、多击事件、防止拽出边界处理、坐标计算规则
+    com.coderjj.phonedefend.activity.ToastLocationActivity
+——————————————————————————————————————————————————
+
+20190521
+versionCode 1
+versionName "1.0"
+1.数据库表结构的分页查询
+    com.coderjj.phonedefend.db.dao.BlackNumberDao    find(index)
+    com.coderjj.phonedefend.activity.BlackNumberActivity   mListView.setOnScrollListener
+2.ListView的优化
+    com.coderjj.phonedefend.activity.BlackNumberActivity   MyAdapter
+3.aidl和反射机制调用系统隐藏方法 endCall() 来拦截电话
+    main.aidl
+    com.coderjj.phonedefend.service   endCall(String incomingNumber)
+——————————————————————————————————————————————————
+
+
