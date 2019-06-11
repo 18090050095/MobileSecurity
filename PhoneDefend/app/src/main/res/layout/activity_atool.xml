@@ -15,23 +15,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_btn_star"
-        android:gravity="center"
         android:drawableLeft="@android:drawable/star_off"
+        android:gravity="center"
         android:text="归属地查询"
         android:textSize="18sp" />
 
     <TextView
+        android:id="@+id/sms_backup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_btn_star"
+        android:drawableLeft="@android:drawable/star_off"
         android:gravity="center"
         android:text="短信备份"
         android:textSize="18sp" />
 
     <TextView
+        android:id="@+id/tv_commonnumber_query"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_btn_star"
+        android:drawableLeft="@android:drawable/star_off"
         android:gravity="center"
         android:text="常用号码查询"
         android:textSize="18sp" />
@@ -40,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_btn_star"
+        android:drawableLeft="@android:drawable/star_off"
         android:gravity="center"
         android:text="归属地查询"
         android:textSize="18sp" />

@@ -5,6 +5,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.SmsMessage;
@@ -23,6 +26,7 @@ public class BlackNumberService extends Service {
     private BlackNumberDao mDao;
     private TelephonyManager mTM;
     private MyPhoneStateListener mPhoneStateListener;
+    private MyContentObserver mMyContentObserver;
 
     @Override
     public void onCreate() {
@@ -53,8 +57,17 @@ public class BlackNumberService extends Service {
 
     @Override
     public void onDestroy() {
+        //注销短信接收广播
         if (mInnerSmsReceiver != null) {
             unregisterReceiver(mInnerSmsReceiver);
+        }
+        //注销内容观察者
+        if (mMyContentObserver != null) {
+            getContentResolver().unregisterContentObserver(mMyContentObserver);
+        }
+        // 取消电话的监听
+        if (mPhoneStateListener != null) {
+            mTM.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
         }
         super.onDestroy();
     }
@@ -107,6 +120,7 @@ public class BlackNumberService extends Service {
     /**
      * 利用aidl和反射的手段获取到系统未开放给开发者的 ITelephony 的 endCall()
      * 方法来实现拦截电话的目的
+     *
      * @param incomingNumber 来电号码
      */
     private void endCall(String incomingNumber) {
@@ -128,9 +142,35 @@ public class BlackNumberService extends Service {
                 ITelephony iTelephony = ITelephony.Stub.asInterface(iBinder);
                 //5.为所欲为__调用隐藏方法
                 iTelephony.endCall();
-            }  catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
+            /*删除通话记录(添加权限)
+              本次还没有插入就进行删除所以造成本次未删除成功
+            getContentResolver().delete(Uri.parse("content://call_log/calls"),
+                    "number = ?",new String[]{incomingNumber});*/
+            //通过内容观察者，观察数据库的变化
+            mMyContentObserver = new MyContentObserver(new Handler(), incomingNumber);
+            getContentResolver().registerContentObserver(
+                    Uri.parse("content://call_log/calls"), true, mMyContentObserver);
+        }
+    }
+
+    class MyContentObserver extends ContentObserver {
+
+        private String mPhone;
+
+        public MyContentObserver(Handler handler, String phone) {
+            super(handler);
+            mPhone = phone;
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            //观察到数据变化后再删除
+            getContentResolver().delete(Uri.parse("content://call_log/calls"),
+                    "number = ?", new String[]{mPhone});
+            super.onChange(selfChange);
         }
     }
 }

@@ -81,6 +81,8 @@ public class SplashActivity extends AppCompatActivity {
     private void initDB() {
         //1.归属地数据拷贝
         initAddressDB("address.db");
+        //2.常用电话号码数据拷贝
+        initAddressDB("commonnum.db");
     }
 
     /**

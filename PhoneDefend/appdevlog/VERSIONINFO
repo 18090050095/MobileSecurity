@@ -4,7 +4,11 @@ versionName "1.0"
 1.自定义组合控件(事件的传递)
     com.coderjj.phonedefend.view.SettingItemView
 2.监测版本，与服务器对比，更新操作，网络请求，json数据解析
-    ccom.coderjj.phonedefend.activity.SplashActivity
+    com.coderjj.phonedefend.activity.SplashActivity
+3.弹框:标准弹框、单选弹框、自定义页面弹框
+    com.coderjj.phonedefend.activity.SplashActivity   showUpdateDialog()
+    com.coderjj.phonedefend.activity.SettingActivity   showToastDialog()
+    com.coderjj.phonedefend.activity.BlackNumberActivity   showDialog()
 ——————————————————————————————————————————————————
 
 20190515
@@ -36,7 +40,7 @@ versionName "1.0"
 versionCode 1
 versionName "1.0"
 1.自定义吐司
-    com.coderjj.phonedefend.service   showToast(String incomingNumber)
+    com.coderjj.phonedefend.service.AddressService   showToast(String incomingNumber)
 2.view的拖拽、多击事件、防止拽出边界处理、坐标计算规则
     com.coderjj.phonedefend.activity.ToastLocationActivity
 ——————————————————————————————————————————————————
@@ -45,13 +49,34 @@ versionName "1.0"
 versionCode 1
 versionName "1.0"
 1.数据库表结构的分页查询
-    com.coderjj.phonedefend.db.dao.BlackNumberDao    find(index)
+    com.coderjj.phonedefend.db.dao.BlackNumberDao    find(int index)
     com.coderjj.phonedefend.activity.BlackNumberActivity   mListView.setOnScrollListener
 2.ListView的优化
     com.coderjj.phonedefend.activity.BlackNumberActivity   MyAdapter
 3.aidl和反射机制调用系统隐藏方法 endCall() 来拦截电话
     main.aidl
-    com.coderjj.phonedefend.service   endCall(String incomingNumber)
+    com.coderjj.phonedefend.service.BlackNumberService   endCall(String incomingNumber)
+——————————————————————————————————————————————————
+
+20190522
+versionCode 1
+versionName "1.0"
+1.备份短信到内存卡(以XML文件的形式存储)
+    com.coderjj.phonedefend.engine.SmsBackUp
+——————————————————————————————————————————————————
+
+20190601
+versionCode 1
+versionName "1.0"
+1.多条目ListView、常驻悬浮框
+    com.coderjj.phonedefend.activity.AppManagerActivity
+——————————————————————————————————————————————————
+
+20190603
+versionCode 1
+versionName "1.0"
+1.扩展ListView
+    com.coderjj.phonedefend.activity.CommonNumberQueryActivity
 ——————————————————————————————————————————————————
 
 
